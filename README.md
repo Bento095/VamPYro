@@ -11,4 +11,4 @@ Sinta-se à vontade para modificar qualquer informação após a geração.
 
 Resultado: A ficha finalizada será exibida ao final da página.
 
-Uma versão em Django estará disponível no futuro.
+Uma versão desktop estará disponível no futuro.
