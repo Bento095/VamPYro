@@ -13,13 +13,13 @@ class Vampiro:
         }
 
         self.habilidades = {
-            'talentos': {},
-            'pericias': {},
-            'conhecimento': {}
+            'Talentos': {},
+            'Perícias': {},
+            'Conhecimentos': {}
         }
         self.disciplinas = {}
         self.antecedentes = {}
-        self.virtudes = {'consiencia': 1, 'autocontrole': 1, 'coragem': 1}
+        self.virtudes = {'Consciência': 1, 'Autocontrole': 1, 'Coragem': 1}
         self.qed = {}
         self.humanidade = 0
         self.forca_de_vontade = 0
@@ -76,7 +76,7 @@ class Vampiro:
         pontos_habilidades = [13, 9, 5]
         for categoria, pontos in zip(self.habilidades.keys(), pontos_habilidades):
             while pontos > 0:
-                habilidade = random.choice(list(lista_habilidades[categoria]))
+                habilidade = random.choice(list(lista_habilidades[categoria.capitalize()]))
                 if habilidade not in self.habilidades[categoria]:
                     self.habilidades[categoria][habilidade] = 0
                 if self.habilidades[categoria][habilidade] < 5:
@@ -84,7 +84,7 @@ class Vampiro:
                     pontos -= 1
 
     def definir_antecedentes(self):
-        self.antecedentes = lista_vantagens["antecedentes"].copy()
+        self.antecedentes = lista_vantagens["Antecedentes"].copy()
         for _ in range(5):
             antecedente = random.choice(list(self.antecedentes.items()))
             if antecedente in self.antecedentes.items():
@@ -95,7 +95,7 @@ class Vampiro:
             virtude = random.choice(list(self.virtudes.items()))
             if self.virtudes[virtude[0]] < 5:
                 self.virtudes[virtude[0]] += 1
-        self.forca_de_vontade = self.virtudes['coragem']
+        self.forca_de_vontade = self.virtudes['Coragem']
 
     def definir_qed(self):
         self.qed = {}
@@ -107,11 +107,11 @@ class Vampiro:
         pontos_extras += sum(self.qed.values())
 
     def definir_humanidade(self):
-        self.humanidade = self.virtudes['consiencia'] + self.virtudes['autocontrole']
+        self.humanidade = self.virtudes['Consciência'] + self.virtudes['Autocontrole']
 
     def definir_geracao(self):
-        if 'geracao' in self.antecedentes:
-            self.geracao -= self.antecedentes['geracao']
+        if 'Geração' in self.antecedentes:
+            self.geracao -= self.antecedentes['Geração']
 
     def definir_pontos_de_sangue(self):
         d10 = list(range(1, 11))
