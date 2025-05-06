@@ -115,13 +115,16 @@ virtudes = {}
 
 qed = {} #qualidades e defeitos
 
-custo_disciplinas = -7
-custo_atributos = -5
-custo_habilidades = -2
-custo_virtudes = -2
-custo_antecedentes = -1
-custo_humanidade = -1
-custo_forca_de_vontade = -1
+custos_pontos_extras = {
+    "custo_disciplinas": -7,
+    "custo_atributos": -5,
+    "custo_habilidades": -2,
+    "custo_virtudes": -2,
+    "custo_antecedentes": -1,
+    "custo_humanidade": -1,
+    "custo_forca_de_vontade": -1
+}
+
 
 pontos_atributos = [7,5,3] # pontos para atributos
 pontos_habilidades = [13,9,5] # pontos para habilidades
