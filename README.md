@@ -47,7 +47,8 @@ Embora fosse hilário descrever um idoso sombrio e gerar uma criança deformada 
 # Versão Desktop
 Uma versão executável para desktop também está disponível.
 
-Versão para V4/20 anos pode acontecer em breve
+Versão para V4/20 anos pode acontecer em breve.
+
 Opção de gerar ancião esta sendo estudada.
 
 Nos vemos uma noite por ai!
