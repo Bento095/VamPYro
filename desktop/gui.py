@@ -3,6 +3,7 @@
 import sys
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import ttk  # Importa o ttk para usar o Combobox
 from vampyro import *
 import random
 
@@ -23,13 +24,13 @@ def gerar_ficha_completa():
 
     # Obtém os valores dos campos de entrada
     nome = entry_1.get().strip().title()
-    cla = entry_2.get().strip().title()
+    cla = combobox_cla.get().strip().title()  # Obtém o valor do Combobox
 
     # Define valores padrão caso os campos estejam vazios
     if not nome:
         nome = "Cainita"
     if not cla:
-        cla = random.choice(list(lista_cla.keys()))
+        cla = random.choice(lista_clas)  # Escolhe um clã aleatório se não for selecionado
     if cla not in lista_cla:
         # Exibe a lista de clãs no campo de texto
         entry_3.insert("1.0", "Clã inválido! Escolha um dos seguintes clãs:\n\n")
@@ -51,6 +52,7 @@ def gerar_ficha_completa():
             linha_formatada = " | ".join(f"{atributo.capitalize()}: {valor}" for atributo, valor in linha)
             entry_3.insert("end", f"{linha_formatada}\n")
 
+    # Exibe as habilidades, antecedentes, virtudes, etc.
     entry_3.insert("end", "\nHabilidades:\n")
     for categoria, habilidades in vampiro.habilidades.items():
         habilidades_filtradas = {k: v for k, v in habilidades.items() if v > 0}
@@ -62,6 +64,7 @@ def gerar_ficha_completa():
                 linha_formatada = " | ".join(f"{habilidade.capitalize()}: {valor}" for habilidade, valor in linha)
                 entry_3.insert("end", f"{linha_formatada}\n")
 
+    # Exibe os antecedentes
     entry_3.insert("end", "\nAntecedentes:\n")
     antecedentes_filtrados = {k: v for k, v in vampiro.antecedentes.items() if v > 0}
     if antecedentes_filtrados:
@@ -71,6 +74,7 @@ def gerar_ficha_completa():
             linha_formatada = " | ".join(f"{antecedente.capitalize()}: {valor}" for antecedente, valor in linha)
             entry_3.insert("end", f"{linha_formatada}\n")
 
+    # Exibe as virtudes
     entry_3.insert("end", "\nVirtudes:\n")
     virtudes_lista = list(vampiro.virtudes.items())
     for i in range(0, len(virtudes_lista), 3):
@@ -78,6 +82,7 @@ def gerar_ficha_completa():
         linha_formatada = " | ".join(f"{virtude.capitalize()}: {valor}" for virtude, valor in linha)
         entry_3.insert("end", f"{linha_formatada}\n")
 
+    # Exibe as qualidades e defeitos
     entry_3.insert("end", "\nQualidades e Defeitos:\n")
     qed_lista = list(vampiro.qed.items())
     for i in range(0, len(qed_lista), 3):
@@ -85,6 +90,7 @@ def gerar_ficha_completa():
         linha_formatada = " | ".join(f"{qed.capitalize()}: {valor}" for qed, valor in linha)
         entry_3.insert("end", f"{linha_formatada}\n")
 
+    # Exibe as disciplinas
     entry_3.insert("end", "\nDisciplinas:\n")
     disciplinas_lista = list(vampiro.disciplinas.items())
     for i in range(0, len(disciplinas_lista), 3):
@@ -92,6 +98,7 @@ def gerar_ficha_completa():
         linha_formatada = " | ".join(f"{disciplina.capitalize()}: {valor}" for disciplina, valor in linha)
         entry_3.insert("end", f"{linha_formatada}\n")
 
+    # Exibe a trilha, força de vontade e pontos de sangue
     entry_3.insert("end", f"\nTrilha: {vampiro.humanidade}\n")
     entry_3.insert("end", f"Força de Vontade: {vampiro.forca_de_vontade}\n")
     entry_3.insert("end", f"Pontos de Sangue: {vampiro.pontos_de_sangue}\n")
@@ -204,18 +211,24 @@ entry_bg_2 = canvas.create_image(
     250.0,
     image=entry_image_2
 )
-entry_2 = Entry(
-    bd=0,
-    bg="#D9D9D9",
-    fg="#000716",
-    highlightthickness=0
+
+# Lista de clãs para o autocomplete
+lista_clas = list(lista_cla.keys())
+
+combobox_cla = ttk.Combobox(
+    window,
+    values=lista_clas,  # Define os clãs como opções
+    state="normal",  # Permite digitação e seleção
+    font=("Inter", 10),
+    justify="center"
 )
-entry_2.place(
+combobox_cla.place(
     x=21.0,
     y=231.0,
     width=148.0,
     height=36.0
 )
+combobox_cla.set(" ")  
 
 entry_image_3 = PhotoImage(
     file=relative_to_assets("entry_3.png"))

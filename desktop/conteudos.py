@@ -6,12 +6,12 @@ lista_cla = clãs_disciplinas = {
     "Toreador": {"Auspícios": 0, "Rapidez": 0, "Presença": 0},
     "Tremere": {"Auspícios": 0, "Dominação": 0, "Taumaturgia": 0},
     "Ventrue": {"Dominação": 0, "Fortitude": 0, "Presença": 0},
-    "Tzimisce": {"Vicissitude": 0, "Animalismo": 0, "Auspícios": 0},
     "Lasombra": {"Tenebrosidade": 0, "Dominação": 0, "Potência": 0},
-    "Giovanni": {"Necromancia": 0, "Dominação": 0, "Potência": 0},
+    "Tzimisce": {"Vicissitude": 0, "Animalismo": 0, "Auspícios": 0},
     "Assamita": {"Quietus": 0, "Rapidez": 0, "Ofuscação": 0},
-    "Setita": {"Serpentis": 0, "Ofuscação": 0, "Presença": 0},
+    "Giovanni": {"Necromancia": 0, "Dominação": 0, "Potência": 0},
     "Ravnos": {"Quimerismo": 0, "Animalismo": 0, "Fortitude": 0},
+    "Setita": {"Serpentis": 0, "Ofuscação": 0, "Presença": 0},
     "Caitif": {}
 }
 

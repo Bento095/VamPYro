@@ -25,7 +25,7 @@ class Vampiro:
         self.forca_de_vontade = 0
         self.geracao = 13
         self.pontos_de_sangue = 0
-        self.pontos_extras = 0
+        self.pontos_extras = 15
 
         # Inicializa os atributos e habilidades
         self.definir_dados()
@@ -34,8 +34,8 @@ class Vampiro:
         self.definir_disciplinas()
         self.definir_qed()
         self.calcular_pontos_gastos()
-        self.definir_atributos()  # Chama o método corrigido
-        self.definir_habilidades()  # Garante que as habilidades sejam geradas
+        self.definir_atributos()  
+        self.definir_habilidades()  
         self.definir_antecedentes()
         self.definir_virtudes()
         self.definir_humanidade()
@@ -192,7 +192,6 @@ class Vampiro:
             sum(self.habilidades['Conhecimentos'].values())
         )
 
-
     def exibir_ficha(self):
         print(f"Nome: {self.nome}")
         print(f"Clã: {self.cla}")
@@ -252,7 +251,11 @@ def criar_pool_ponderada(disciplinas_personagem, testes_disciplinas, opcoes):
     pool = []
 
     for opcao in opcoes:
-        peso = 1  # Peso padrão
+        peso = 1
+        for disciplina, nivel in disciplinas_personagem.items():
+            if nivel > 0 and disciplina in testes_disciplinas:
+                if opcao in testes_disciplinas[disciplina]:
+                    peso += nivel * 3  # aumente o multiplicador conforme o quanto quer favorecer
 
         # Aumenta o peso se a opção estiver associada a uma disciplina do personagem
         for disciplina, nivel in disciplinas_personagem.items():
@@ -268,17 +271,6 @@ def exibir_creditos(entry_widget):
     entry_widget.delete("1.0", "end")  # Limpa o conteúdo do widget
     entry_widget.insert("1.0", creditos)  # Insere o texto corretamente
 
-def exibir_habilidades(entry_3, vampiro):
-    entry_3.insert("end", "\nHabilidades:\n")
-    for categoria, habilidades in vampiro.habilidades.items():
-        habilidades_filtradas = {k: v for k, v in habilidades.items() if v > 0}
-        if habilidades_filtradas:
-            entry_3.insert("end", f"\n{categoria.capitalize()}:\n")
-            habilidades_lista = list(habilidades_filtradas.items())
-            for i in range(0, len(habilidades_lista), 3):
-                linha = habilidades_lista[i:i+3]
-                linha_formatada = " | ".join(f"{habilidade.capitalize()}: {valor}" for habilidade, valor in linha)
-                entry_3.insert("end", f"{linha_formatada}\n")
 
 '''def main():
     os.system('cls')
